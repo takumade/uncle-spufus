@@ -1,6 +1,6 @@
 ![alt text](https://raw.githubusercontent.com/singularthought/uncle-spufus/master/1548635413040.png)
 
-# uncle-spufus
+# Uncle Spufus
 A tool that automates Mac address spoofing
 
 ## what is uncle-spufus
@@ -24,13 +24,19 @@ OR
 
 THEN
 
-2. Naviagate to uncle-spufus
+2. Naviagate to uncle-spufus:
+
         `cd uncle-spufus`
 
-3. Make uspufus.sh executable
+3. Make uspufus.sh executable:
+
         `chmod +× uspufus.sh`
 
-4. Execute
+4. Execute:
+
         `./uspufus.sh`
+
+5. Have fun
+
 
 
