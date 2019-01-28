@@ -3,7 +3,7 @@
 # Uncle Spufus
 A tool that automates Mac address spoofing
 
-## what is uncle-spufus
+## What is Uncle Spufus
 Uncle Spufus is a tool that automates MAC 
 address spoofing. To do so it tries various
 techniques and checks if the MAC is successfully
