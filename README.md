@@ -11,8 +11,8 @@ spoofed.
 
 
 It makes of:
-..* macchanger
-..* bash (lol)
+* macchanger
+* bash (lol)
 
 ## Installing Uncle Spufus
 1a. Download the zip 
