@@ -1,5 +1,4 @@
-![alt text](https://github.com/singularthought/uncle-spufus/1548635413040.png)
-
+![alt text](https://raw.githubusercontent.com/singularthought/uncle-spufus/master/1548635413040.png)
 
 # uncle-spufus
 A tool that automates Mac address spoofing
