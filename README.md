@@ -1,8 +1,4 @@
-
-
-█░░█ █▀▀▄ █▀▀ █░░ █▀▀   █▀▀ █▀▀█ █░░█ █▀▀ █░░█ █▀▀
-█░░█ █░░█ █░░ █░░ █▀▀   ▀▀█ █░░█ █░░█ █▀▀ █░░█ ▀▀█
-░▀▀▀ ▀░░▀ ▀▀▀ ▀▀▀ ▀▀▀   ▀▀▀ █▀▀▀ ░▀▀▀ ▀░░ ░▀▀▀ ▀▀▀   spoof a MAC
+![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/banner.png)
 
 # Uncle Spufus v1.5
 A tool that automates MAC address spoofing
