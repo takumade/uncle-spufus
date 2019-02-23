@@ -59,6 +59,7 @@ function banner()
     echo -e "█░░█ █░░█ █░░ █░░ █▀▀   ▀▀█ █░░█ █░░█ █▀▀ █░░█ ▀▀█"
     echo -e "░▀▀▀ ▀░░▀ ▀▀▀ ▀▀▀ ▀▀▀   ▀▀▀ █▀▀▀ ░▀▀▀ ▀░░ ░▀▀▀ ▀▀▀"
     echo -e "contact: @madechangu2"
+    echo -e ""
     
 
 }
@@ -96,19 +97,19 @@ function tech2()
 # save technique: saves a working technique
 function savetech()
 {
-    if [ "$CURRENT_TECH" == "`cat $HOME/.uspufus/tech`" ]
+    if [ -d $HOME/.uspufus/ ]
     then
-        return
-    else
-        if [ -d $HOME/.uspufus ]
+        if [ "$CURRENT_TECH" == "`cat $HOME/.uspufus/tech`" ]
         then
-            echo $CURRENT_TECH  > $HOME/.uspufus/tech
+            return
         else
-            mkdir $HOME/.uspufus
             echo $CURRENT_TECH  > $HOME/.uspufus/tech
-            chmod 755 $HOME/.uspufus
-            chmod 755 $HOME/.uspufus/tech
         fi
+    else
+        mkdir $HOME/.uspufus
+        echo $CURRENT_TECH  > $HOME/.uspufus/tech
+        chmod 755 $HOME/.uspufus
+        chmod 755 $HOME/.uspufus/tech
     fi
 }
 
