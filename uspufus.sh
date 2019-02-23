@@ -4,6 +4,7 @@
 #                            UNCLE  SPUFUS                                                       #
 #                                                                                                #
 #       @name - uncle spufus                                                                     #
+#       @version - 1.5                                                                           #
 #       @author - Takunda Madechangu                                                             #
 #       @description - Uncle spufus is a tool that helps to automate the                         #
 #                      work of spoofing MAC address easier. It makes use                         #
@@ -14,7 +15,7 @@
 #                      FYI Uncle spufus is still in development so do not suprised               #
 #                      if you come accross bugs in your exploits/adventures(whatever they are)   #
 #                                                                                                #
-#       @contact - madechangu.takunda@gmail.com, @singularthought[twitter],                      #
+#       @contact - madechangu.takunda@gmail.com, @madechangu2[twitter],                          #
 #                                                                                                #
 #                                             WITH LOVE                                          #
 ##################################################################################################
@@ -35,7 +36,8 @@ MAC=2
 TECHNIQUES=(tech1 tech2)
 RETRY_CHECH_CONN=10
 SUCCESS=0
-EVERYTIME=(5 20 40 60)
+FIRST_ARG=$1
+SECOND_ARG=$2
 
                     #######################
                     #                     #
@@ -57,12 +59,19 @@ function banner()
     echo -e  "  ,/   ,--, ,--,                   ,--,                            ,/"
     echo -e  "  |    |  | |  | ,__ ___.   ,____. |  |  ,----,            \`O-O    |"
     echo -e  "   \\   |  | |  | |  \`_   \\ |   __| |  | |  .-. :  [SPUFUS]          \\"
-    echo -e  "    |  '  '_'  ' |  | |  |  \\  \\_. |  |  \\  ---,  version: 1.0       |"
+    echo -e  "    |  '  '_'  ' |  | |  |  \\  \\_. |  |  \\  ---,  version: 1.5       |"
     echo -e  "   /    \`------' \`--' '--\`   \`---'  \`-'   \`----'  author: Madechangu/"
     echo -e  "  |                           --Spoof a MAC--                       |"
     echo -e  "   \\________________________________________________________________\\"
 
 }
+
+###################################
+#                                 #
+#           TECHNIQUES            #
+#                                 #
+################################### 
+
 # Technique 01
 function tech1()
 {
@@ -79,6 +88,31 @@ function tech2()
     ifconfig $INTERFACE down
     macchanger -b -r $INTERFACE 1> /dev/null
     ifconfig $INTERFACE up
+}
+
+##################################
+#                                #
+#     OTHER FUNCTIONS            #
+#                                #
+##################################
+
+# save technique: saves a working technique
+function savetech()
+{
+    if [ "$CURRENT_TECH" == "`cat $HOME/.uspufus/tech`" ]
+    then
+        return
+    else
+        if [ -d $HOME/.uspufus ]
+        then
+            echo $CURRENT_TECH  > $HOME/.uspufus/tech
+        else
+            mkdir $HOME/.uspufus
+            echo $CURRENT_TECH  > $HOME/.uspufus/tech
+            chmod 755 $HOME/.uspufus
+            chmod 755 $HOME/.uspufus/tech
+        fi
+    fi
 }
 
 # getinterfaces: get all available interfaces
@@ -117,8 +151,43 @@ function sleepnspoof()
         echo "[!] Spoofing mac"
         spoofmac
         echo "[!] Press CTRL-C to stop the spoofer."
-        echo
+        echo 
         sleep $SECONDS
+    done
+}
+
+# confirmtech: Check if a tecnique was successful
+function confirmtech()
+{
+    # Confirm Technique
+    tries=0
+    while [ 0 ]
+    do
+        INET_LINE=`ifconfig $INTERFACE | grep broadcast`
+            
+        if [ "$INET_LINE" != "" ]
+        then
+            getmac
+            NEW_MAC=$MAC
+                
+            if [ "$OLD_MAC" != "$NEW_MAC" ]
+            then
+                echo "[*] MAC Address successfully spoofed!"
+                echo "[i] NEW MAC: $NEW_MAC"
+                savetech    # Save the working techinique
+                SUCCESS=1
+                break
+            fi
+        fi
+            
+        if [ $tries -eq $RETRY_CHECH_CONN ]
+        then
+            echo "[!] Checking connection failed"
+            exit
+        else
+            sleep 3
+            tries=`expr $tries + 1`
+        fi
     done
 }
 
@@ -129,38 +198,31 @@ function spoofmac()
     getmac
     OLD_MAC=$MAC
     
+    # Check for a saved tecnique
+    if [ -f $HOME/.uspufus/tech ]
+    then
+        SIZE=`ls -l $HOME/.uspufus/tech | awk -F" " '{ print $5 }'`
+        
+        if [ $SIZE -gt 0 ]
+        then
+            echo "[*] Found a saved technique, using that"
+            technique=`cat $HOME/.uspufus/tech`
+            $technique
+            CURRENT_TECH=$technique
+            confirmtech
+            
+            if [ $SUCCESS -eq 1 ]
+            then
+                return
+            fi
+        fi
+    fi 
+    
     for technique in ${TECHNIQUES[*]}
     do
         $technique
-        
-        tries=0
-        while [ 0 ]
-        do
-            INET_LINE=`ifconfig $INTERFACE | grep broadcast`
-            
-            if [ "$INET_LINE" != "" ]
-            then
-                getmac
-                NEW_MAC=MAC
-                
-                if [ "$OLD_MAC" != "$NEW_MAC" ]
-                then
-                    echo "[*] MAC Address successfully spoofed!"
-                    SUCCESS=1
-                    break
-                fi
-            fi
-            
-            tries=0
-            if [ $tries -eq $RETRY_CHECH_CONN ]
-            then
-                echo "[!] Checking connection failed"
-                exit
-            else
-                sleep 3
-                tries=`expr $tries + 1`
-            fi
-        done
+        CURRENT_TECH=$technique
+        confirmtech
         
         if [ $SUCCESS -eq 1 ]
         then
@@ -179,50 +241,93 @@ function main()
     else
         getinterfaces
         
-        # Display Interfaces
-        echo
-        echo "Interfaces: "
-        echo
-        index=0
-        for interfc in ${INTERFACE_ARR[*]}
-        do
-            index=`expr $index + 1` 
-            echo "$index - $interfc"
-        done
-        
-        # Select Interface
-        echo -e "[?] Enter interface[1-$index]:\c "
-        read interface_index
-        interface_index=`expr $interface_index - 1`
-        INTERFACE=${INTERFACE_ARR[$interface_index]}
-        
-        clear
-        banner
-        echo ""
-        echo -e "[*] Change MAC:"
-        echo
-        echo "- 1. once"
-        echo "- 2. custom"
-        echo -e "[?] Time[ 1 - 2 ]:\c "
-        read TIME
-        
-        if [ $TIME -eq 1 ]
+        # Check first argument passed first
+        if [ "$FIRST_ARG" != "" ]
         then
-            spoofmac
-        elif [ $TIME -eq 2 ]
-        then
-            echo
-            echo "[i] Your MAC address will be spoofed every n minutes. e.g every 5 minutes"
-            echo -e "Enter time[minutes]: \c"
-            read TIME
-            echo
-            sleepnspoof $TIME
+            INTERFACE_FOUND=0
+            for interfc in ${INTERFACE_ARR[*]}
+            do
+                if [ "$interfc" == "$FIRST_ARG" ]
+                then
+                    echo "[*] Interface found"
+                    INTERFACE_FOUND=1
+                    break
+                fi
+            done
+            
+            if [ $INTERFACE_FOUND -eq 1 ]
+            then
+                INTERFACE=$FIRST_ARG
+            else
+                echo "[-] Interface not found"
+                exit
+            fi
         else
-            echo "[!] Input Error. Exiting"
-            exit
+            # Display Interfaces
+            echo
+            echo "Interfaces: "
+            echo
+            index=0
+            for interfc in ${INTERFACE_ARR[*]}
+            do
+                index=`expr $index + 1` 
+                echo "$index - $interfc"
+            done
+        
+            # Select Interface
+            echo -e "[?] Enter interface[1-$index]:\c "
+            read interface_index
+            interface_index=`expr $interface_index - 1`
+            INTERFACE=${INTERFACE_ARR[$interface_index]}
+        fi
+        
+        # Check second argument second
+        if [ "$SECOND_ARG" != "" ]
+        then
+            re="^[0-9]+$"
+            if ! [[ $SECOND_ARG =~ $re ]]
+            then
+                echo "[-] Argument 2 is not a number" >&2
+                exit 1
+            else
+                if [ $SECOND_ARG -eq 0 ]
+                then
+                    spoofmac
+                else
+                    TIME=$SECOND_ARG
+                    sleepnspoof $TIME
+                fi
+            fi
+        else            
+            clear
+            banner
+            echo ""
+            echo -e "[*] Change MAC:"
+            echo
+            echo "- 1. once"
+            echo "- 2. custom"
+            echo -e "[?] Time[ 1 - 2 ]:\c "
+            read TIME
+            
+            if [ $TIME -eq 1 ]
+            then
+                spoofmac
+            elif [ $TIME -eq 2 ]
+            then
+                echo
+                echo "[i] Your MAC address will be spoofed every n minutes. e.g every 5 minutes"
+                echo -e "Enter time[minutes]: \c"
+                read TIME
+                echo
+                sleepnspoof $TIME
+            else
+                echo "[!] Input Error. Exiting"
+                exit
+            fi
         fi
     fi
 }
 
 banner
 main
+
