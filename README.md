@@ -58,7 +58,7 @@ To spoof wlan0 interface once
 
         `./uspufus wlan0 0`
         
-        ![alt text](https://raw.githubusercontent.com/singularthought/uncle-spufus/master/pics/non-int.png)
+        ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int.png)
 
 To spoof wlan0 interface after every 1 minute
         
