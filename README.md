@@ -58,13 +58,13 @@ To spoof wlan0 interface once
 
         `./uspufus wlan0 0`
         
-        ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int.png)
+![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int.png)
 
 To spoof wlan0 interface after every 1 minute
         
         `./uspufus wlan0 1`
         
-        ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int2.png)
+ ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int2.png)
 
 Note the number of minutes can anything you like 5, 10 , 50, 360, 100000, e.t.c
 
@@ -75,6 +75,6 @@ Have fun
 
 Please send 0.00048916 BTC(2 USD) to the Bitcoin Address 14AEtGfHSVYLjfY5yQTq9vKx1mBbCp1qkS
 
-        ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/qr.png)
+![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/qr.png)
 
 
