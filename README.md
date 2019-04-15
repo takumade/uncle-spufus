@@ -68,13 +68,6 @@ To spoof wlan0 interface after every 1 minute
 
 Note the number of minutes can anything you like 5, 10 , 50, 360, 100000, e.t.c
 
-Have fun 
-
-
-# DONATE BITCOIN TO TAKUNDA MADECHANGU
-
-Please send 0.00048916 BTC(2 USD) to the Bitcoin Address 14AEtGfHSVYLjfY5yQTq9vKx1mBbCp1qkS
-
-![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/qr.png)
+#Have fun 
 
 
