@@ -80,7 +80,9 @@ To spoof wlan0 interface after every 1 minute
 Note the number of minutes can anything you like 5, 10 , 50, 360, 100000, e.t.c
 
 ## To do list
-- [ ] 
+- [x] Finish my changes
+- [ ] Push my commits to GitHub
+- [ ] Open a pull request
 
 
 Please report any errors or vulnerabilities to madechangu.takunda@gmail.com
