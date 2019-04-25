@@ -4,27 +4,36 @@
 A tool that automates MAC address spoofing
 
 ## What is Uncle Spufus
-Uncle Spufus is a tool that automates MAC 
-address spoofing. Inorder to accomplish that
-it tries various techniques and checks if the 
-MAC is successfully spoofed. This update saves
-a working technique so that you don't loop through
-the whole list of techniques again.
+# My long story
+I remember back in the days when i used macchanger to spoof my MAC address. It would show
+that the MAC address was successfully changed. However as soon i connected to wifi network the MAC address
+reverted back to the original MAC. I discovered that by accident meaning that those guys who blindly trust
+tools would continue to do stuff thinking "Yay! i am using a spoofed MAC Address", but in reality they
+were using their original MAC!.
+
+# In short
+Uncle spufus uses macchanger however it checks that the MAC is successfully spoofed after connecting to 
+a network. It will always fail if a MAC reverts back to the original after connecting to a network. It
+tries some well known techniques to spoof your MAC. When it finds the one thats working it saves that
+technique for future use.
 
 
-Inorder to run uspufus the following musr be present:
+# Requirements
+Inorder to run uncle spufus the following musr be present:
 * macchanger
-* bash (which comes already installed)
+* bash
+* ifconfig
 
 ## Installing Uncle Spufus
+
+# Method 1: Downloading the zip
 1 Download the zip and extract it
 
-OR
+
+# Method 2: Clonig the repo
 
 1. Clone the repository
         `git clone https://github.com/singularthought/uncle-spufus.git`
-
-THEN
 
 2. Navigate to uncle-spufus directory:
 
@@ -36,16 +45,18 @@ THEN
 
 4. From there execute it. 
 
+## Modes of Execution
+
 Note that uspufus has two modes
 * Interactive 
 * Non-Interactive
 
-## Interactive
+# 1. Interactive
 
 1. Execute uspufus without any arguments and follow along
         `./uspufus`
 
-## Non-Interactive
+# 2. Non-Interactive
 
 The first argument is the interface that you want to spoof a mac.
 The second argument is amount of time(in minutes) to wait before spoofing the MAC
@@ -68,6 +79,8 @@ To spoof wlan0 interface after every 1 minute
 
 Note the number of minutes can anything you like 5, 10 , 50, 360, 100000, e.t.c
 
-#Have fun 
+
+Please report any errors or vulnerabilities to madechangu.takunda@gmail.com
+# Peace!!! 
 
 
