@@ -55,7 +55,7 @@ trap "onterminate" SIGINT SIGTERM
 # Banner
 function banner()
 {
-    echo -e "█░░█ █▀▀▄ █▀▀ █░░ █▀▀   █▀▀ █▀▀█ █░░█ █▀▀ █░░█ █▀▀  v1.5"
+    echo -e "█░░█ █▀▀▄ █▀▀ █░░ █▀▀   █▀▀ █▀▀█ █░░█ █▀▀ █░░█ █▀▀  v1.6"
     echo -e "█░░█ █░░█ █░░ █░░ █▀▀   ▀▀█ █░░█ █░░█ █▀▀ █░░█ ▀▀█"
     echo -e "░▀▀▀ ▀░░▀ ▀▀▀ ▀▀▀ ▀▀▀   ▀▀▀ █▀▀▀ ░▀▀▀ ▀░░ ░▀▀▀ ▀▀▀"
     echo -e "contact: @madechangu2"
@@ -230,8 +230,8 @@ function spoofmac()
 }
 
 
-# main: TEH MAIN!!!
-function main()
+# change_the_mac aka MAIN
+function change_the_mac()
 {
     if [ $USER != root ]
     then
@@ -326,6 +326,20 @@ function main()
     fi
 }
 
+# change hostname
+function change_hostname()
+{
+           OLD_HOSTNAME=$(hostname)
+           # Do something with the old hostname
+           
+           NEW_HOSTNAME=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
+           echo "[i] Setting hostname"
+           hostname $NEW_HOSTNAME
+           NEW_HOSTNAME=$(hostname)
+           echo "[i] New hostname: $NEW_HOSTNAME"
+}
+
 banner
-main
+change_the_mac
+change_hostname
 
