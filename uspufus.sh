@@ -4,7 +4,7 @@
 #                            UNCLE  SPUFUS                                                       #
 #                                                                                                #
 #       @name - uncle spufus                                                                     #
-#       @version - 1.5                                                                           #
+#       @version - 1.6                                                                           #
 #       @author - Takunda Madechangu                                                             #
 #       @description - Uncle spufus is a tool that helps to automate the                         #
 #                      work of spoofing MAC address easier. It makes use                         #
