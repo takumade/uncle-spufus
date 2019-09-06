@@ -1,7 +1,9 @@
-![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/banner.png)
+                                        █░░█ █▀▀▄ █▀▀ █░░ █▀▀   █▀▀ █▀▀█ █░░█ █▀▀ █░░█ █▀▀  v1.6"
+                                        █░░█ █░░█ █░░ █░░ █▀▀   ▀▀█ █░░█ █░░█ █▀▀ █░░█ ▀▀█"
+                                        ░▀▀▀ ▀░░▀ ▀▀▀ ▀▀▀ ▀▀▀   ▀▀▀ █▀▀▀ ░▀▀▀ ▀░░ ░▀▀▀ ▀▀▀"
 
-# Uncle Spufus v1.5
-A tool that automates MAC address spoofing
+# Uncle Spufus v1.6
+A tool that automates MAC address and hostname spoofing
 
 ## What is Uncle Spufus
 # My long story
@@ -30,7 +32,7 @@ Inorder to run uncle spufus the following musr be present:
 1 Download the zip and extract it
 
 
-# Method 2: Clonig the repo
+# Method 2: Cloning the repo
 
 1. Clone the repository
         `git clone https://github.com/singularthought/uncle-spufus.git`
@@ -69,13 +71,13 @@ To spoof wlan0 interface once
 
         `./uspufus wlan0 0`
         
-![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int.png)
+
 
 To spoof wlan0 interface after every 1 minute
         
         `./uspufus wlan0 1`
         
- ![alt text](https://github.com/singularthought/uncle-spufus/blob/master/pics/non-int2.png)
+
 
 Note the number of minutes can anything you like 5, 10 , 50, 360, 100000, e.t.c
 
